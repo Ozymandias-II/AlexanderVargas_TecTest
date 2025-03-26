@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "0fc05e86-c46b-44d6-9845-63e179050ca5",
+		"name": "Bank System API_Alexander Vargas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43483223"
+	},
+	"item": [
+		{
+			"name": "Create Client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Maria Garcia\",\n  \"gender\": \"Femenino\",\n  \"age\": 30,\n  \"identification\": \"1122334455\",\n  \"address\": \"Calle Principal 123\",\n  \"phone\": \"0987654321\",\n  \"password\": \"secure123\",\n  \"status\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Clients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clientes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"accountNumber\": \"123456789\",\n  \"accountType\": \"Ahorros\",\n  \"initialBalance\": 1000,\n  \"status\": true,\n  \"clientId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/cuentas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"transactionType\": \"DEPOSITO\",\n  \"value\": 500,\n  \"accountId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/movimientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"movimientos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Account Statement",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/reportes?clientId=1&startDate=2025-01-01T00:00:00&endDate=2025-12-31T23:59:59",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"reportes"
+					],
+					"query": [
+						{
+							"key": "clientId",
+							"value": "1"
+						},
+						{
+							"key": "startDate",
+							"value": "2025-01-01T00:00:00"
+						},
+						{
+							"key": "endDate",
+							"value": "2025-12-31T23:59:59"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
