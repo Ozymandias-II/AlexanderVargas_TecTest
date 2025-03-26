@@ -10,7 +10,7 @@
 ### Deployment
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/banking-system.git
+git clone https://github.com/Ozymandias-II/AlexanderVargas_TecTest.git
 cd banking-system
 
 # Build and start containers
