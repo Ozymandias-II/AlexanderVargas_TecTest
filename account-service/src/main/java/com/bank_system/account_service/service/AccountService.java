@@ -1,6 +1,8 @@
 package com.bank_system.account_service.service;
 
 import com.bank_system.account_service.dto.*;
+import com.bank_system.account_service.exception.AccountNotFoundException;
+import com.bank_system.account_service.exception.DuplicateAccountException;
 import com.bank_system.account_service.exception.InsufficientBalanceException;
 import com.bank_system.account_service.model.Account;
 import com.bank_system.account_service.model.Transaction;
@@ -28,7 +30,7 @@ public class AccountService {
     @Transactional
     public AccountResponseDTO createAccount(AccountRequestDTO request) {
         if (accountRepository.existsByAccountNumber(request.getAccountNumber())) {
-            throw new IllegalArgumentException(" Ya existe una cuenta con el número");
+            throw new DuplicateAccountException("Ya existe una cuenta con el número " + request.getAccountNumber());
         }
 
         Account account = modelMapper.map(request, Account.class);
@@ -42,7 +44,7 @@ public class AccountService {
     @Transactional(readOnly = true)
     public AccountResponseDTO getAccountById(Long id) {
         Account account = accountRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No existe cuenta con el id " + id));
+                .orElseThrow(() -> new AccountNotFoundException("No existe cuenta con el id " + id));
         return modelMapper.map(account, AccountResponseDTO.class);
     }
 
