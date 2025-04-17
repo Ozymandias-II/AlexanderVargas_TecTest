@@ -22,7 +22,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClientResponseDTO> getById(@PathVariable Long id) {
+    public ResponseEntity<ClientResponseDTO> getById(@PathVariable String id) {
         return ResponseEntity.ok(clientService.getById(id));
     }
 

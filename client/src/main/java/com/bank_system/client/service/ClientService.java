@@ -2,6 +2,7 @@ package com.bank_system.client.service;
 
 import com.bank_system.client.dto.ClientRequestDTO;
 import com.bank_system.client.dto.ClientResponseDTO;
+import com.bank_system.client.exception.ClientNotFoundException;
 import com.bank_system.client.model.Client;
 import com.bank_system.client.model.Person;
 import com.bank_system.client.repository.ClientRepository;
@@ -47,9 +48,12 @@ public class ClientService {
     }
 
     @Transactional(readOnly = true)
-    public ClientResponseDTO getById(Long id) {
-        Client client = clientRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado con id " + id));
+    public ClientResponseDTO getById(String id) {
+        Client client = clientRepository.findByPersonIdentification(id)
+                .orElseThrow(() -> {
+                    String errorMessage = String.format("Cliente con identificación %s no encontrado", id);
+                    throw new ClientNotFoundException(errorMessage);
+                });
         return modelMapper.map(client, ClientResponseDTO.class);
     }
 
